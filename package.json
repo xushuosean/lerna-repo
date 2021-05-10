@@ -1,0 +1,21 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.1",
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.js",
+    "build": "node build/webpack.dev.js",
+    "server": "webpack ./packages/vue-repo/index.js --mode development"
+  },
+  "dependencies": {
+    "webpack": "^5.36.2",
+    "webpack-cli": "3",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
