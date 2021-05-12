@@ -1,8 +1,6 @@
-
-import jing from './img/jing.jpg'
 import _ from 'lodash'
 
-const requireComponent = require.context(
+const file = require.context(
   // 其组件目录的相对路径
   './img',
   // 是否查询其子目录
@@ -11,15 +9,28 @@ const requireComponent = require.context(
   /\.(jpg|svg|png|gif)$/
 )
 
+let assets = {}
 
-const a = require('./img/jinggao.jpg')
+file.keys().map((fileName) => {
+  const key = _.upperFirst(
+    _.camelCase(
+      // 获取和目录深度无关的文件名
+      fileName
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, '')
+    )
+  )
 
-let exportFile = requireComponent.keys().map((file) => {
-  return requireComponent.resolve(file)
+  assets[key] = file(fileName)
+  return null
 })
 
-let exportObj = exportFile.map(item => {
-  console.log(item.match(/\//))
-})
 
-export default exportFile
+console.log(assets)
+
+let container = {
+  assets
+}
+
+export default container

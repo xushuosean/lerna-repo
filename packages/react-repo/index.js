@@ -2,7 +2,7 @@ import { some } from 'other-repo'
 
 some()
 
-import key, { jing } from 'ddi-assets'
+import container from 'ddi-assets'
 
 const app = document.querySelector('#app')
 
@@ -12,6 +12,6 @@ app.appendChild(div)
 
 let img = new Image()
 
-img.src = key.jing
+img.src = container.assets['500'].default
 
 app.appendChild(img)

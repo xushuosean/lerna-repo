@@ -18,7 +18,8 @@ module.exports = {
         path: path.resolve(__dirname, "./dist"),
         filename: "js/[name].[hash:8].js",
         chunkFilename: 'js/[name].[hash:8].js',
-        publicPath: '/'
+        publicPath: '/',
+        assetModuleFilename: "static/[name].[hash:8].[etx]"
     },
     optimization: {
         runtimeChunk: 'single',
@@ -27,10 +28,11 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/,
-                loader: 'url-loader',
+                type: "javascript/auto",
+                loader: "url-loader",
                 options: {
-                    limit: 10,
-                    name: 'img/[name]-[hash:8].[ext]'
+                    limit: 1,
+                    name: "img/[name].[contentHash:8].[etx]"
                 }
             }
         ]

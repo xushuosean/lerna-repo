@@ -27,10 +27,10 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/,
-                loader: "url-loader",
+                loader: "file-loader",
                 options: {
                   limit: 10,
-                  name: 'static/img/[name]-[hash:8].[ext]'
+                  name: 'static/img/[name].[hash:8].[ext]'
                 }
             }
         ]

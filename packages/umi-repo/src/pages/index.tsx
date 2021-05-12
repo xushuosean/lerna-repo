@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import assets from 'ddi-assets'
+import container from 'ddi-assets'
 
 export default function() {
   return (
@@ -9,8 +9,9 @@ export default function() {
       <ul className={styles.list}>
         <li>To get started, edit <code>src/pages/index.js</code> and save to reload.</li>
         <li>
-          <img src={assets.a} alt=""/>
-          <img src={assets.jing} alt=""/>
+          <img src={container.assets['404']} alt=""/>
+          <img src={container.assets['500']} alt=""/>
+          <img src={container.assets['Jing']} alt=""/>
           <a href="https://umijs.org/guide/getting-started.html">
             Getting Started
           </a>
