@@ -1,0 +1,29 @@
+{
+  "name": "ddi-assets",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "sean <1963966513@qq.com>",
+  "homepage": "https://github.com/xushuosean/lerna-repo#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xushuosean/lerna-repo.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/xushuosean/lerna-repo/issues"
+  }
+}

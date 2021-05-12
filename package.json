@@ -5,17 +5,20 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "url-loader": "^4.1.1",
+    "webpack-cli": "3"
   },
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.js",
-    "build": "node build/webpack.dev.js",
+    "build": "webpack --config build/webpack.prod.js",
     "server": "webpack ./packages/vue-repo/index.js --mode development"
   },
   "dependencies": {
     "webpack": "^5.36.2",
-    "webpack-cli": "3",
     "webpack-dev-server": "^3.11.2"
   }
 }
