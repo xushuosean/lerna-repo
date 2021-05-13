@@ -1,6 +1,12 @@
 import { merge } from 'lodash';
 import { IConfig } from 'umi-types';
 const assetDir = 'static'
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
+
+const path = require('path');
+function resolve (dir) {
+    return path.join(__dirname, dir)
+}
 
 // ref: https://umijs.org/config/
 const config: IConfig =  {
@@ -33,8 +39,22 @@ const config: IConfig =  {
         ],
       },
     }],
+    // new PreloadWebpackPlugin({
+    //   rel: 'preload',
+    //   as(entry) {
+    //     if (/\.css$/.test(entry)) return 'style';
+    //     if (/\.woff$/.test(entry)) return 'font';
+    //     if (/\.png$/.test(entry)) return 'image';
+    //     return 'script';
+    //   }
+    // })
   ],
+  // chunks: ['vendors', 'umi'],
   chainWebpack(config, { webpack }) {
+    // 设置别名
+    config.resolve.alias
+      .set('@assets', resolve('./src/assets'))
+
     config.output
       .filename(assetDir + '/js/[name].[hash:8].js')
       .chunkFilename(assetDir + '/js/[name].[contenthash:8].chunk.js')
@@ -48,25 +68,24 @@ const config: IConfig =  {
       },
     ]);
 
-    config.module
-      .rule("images")
-      .test(/\.(png|jpe?g|gif|webp|ico)(\?.*)?$/)
-      .use("url-loader")
-      .loader("url-loader")
-      .tap((options) => {
-        const newOptions = {
-          ...options,
-          name: assetDir + "/[name].[hash:8].[ext]",
-          fallback: {
-            // ...options.fallback,
-            options: {
-              name: assetDir + "/[name].[hash:8].[ext]",
-              esModule: false,
-            },
-          },
-        };
-        return newOptions;
-      });
+    config
+      .plugin('preload-webpack-plugin')
+      .after('html-webpack-plugin')
+      .use(PreloadWebpackPlugin, [ {
+        rel: 'preload',
+        as: 'script'
+      }])
+
+    // config
+    //   .plugin('PreloadeWebpackPlugin')
+    //   .after('html-webpack-plugin')
+    //   .use(PreloadWebpackPlugin)
+    //   .tap(() => [
+    //     {
+    //       rel: 'preload',
+    //       as: ['umi']
+    //     }
+    //   ])
   }
 }
 
